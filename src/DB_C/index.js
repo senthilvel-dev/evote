@@ -1,5 +1,4 @@
 const {Client} = require ('pg');
-const express = require('express');
 const client = new Client({
  user: 'postgres',
   host: 'localhost',
@@ -7,8 +6,7 @@ const client = new Client({
   password: 'kumaravel123',
   port: '5432'
 });
-const app = new express();
-app.get('/login',function(token2,res){
+const validation=(token2,res)=>{
     const m={};
     const query = {
          text : 'select * from user_det where username=$1 and password=$2',
@@ -26,9 +24,4 @@ app.get('/login',function(token2,res){
         client.end();
     })
     res.send(c);
-})
-var server= app.listen(8080,function(){
-    var host= server.address().address;
-    var port=server.address().port;
-    console.log('Done');
-})
+}
