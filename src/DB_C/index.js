@@ -12,7 +12,7 @@ app.get('/login',function(token2,res){
     const m={};
     const query = {
          text : 'select * from user_det where username=$1 and password=$2',
-         values : (token2.username , token2.password)
+         values : (token2.body.username , token2.body.password)
     }
     const c={};
     client.query(query,(res)=>{
